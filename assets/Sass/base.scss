@@ -1,0 +1,89 @@
+@import 'reset';
+$cor-fundo: #CCC;
+$cor-fonte: #333;
+$borda-padrao: 2px;
+
+@mixin girar($graus){
+    transform:rotate($graus);
+    --webkit-transform:rotate($graus);
+    --moz-transform:rotate($graus);
+    --ms-transform:rotate($graus);
+}
+
+nav{
+    background-color: $cor-fundo;
+    height: 100px;
+    ul{
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        border: 1px solid black;
+    }
+    .girar li{
+        @include girar(270deg);
+    }
+    li{
+        display: inline-block;
+        margin: 20px;  
+        a{
+            text-decoration: none;
+            padding: 10px;
+            color: $cor-fonte;
+            &:hover{
+                background-color: #eee;
+            }  
+        }
+    }
+}
+
+%fundamento-msg{
+    padding: 10px;
+    font-size: 24px;
+    border:2px solid #CCC;
+    margin: 20px;
+}
+
+.msg-info{
+    @extend %fundamento-msg;
+    border-color: blue;
+}
+.msg-warning{
+    @extend %fundamento-msg;
+    border-color: red;
+
+}
+
+%item{
+    background-color: black;
+    height: 40px;
+    margin: 20px;
+}
+
+.item{
+    @extend %item;
+    width: 100px;
+}
+.item-duplo{
+    @extend %item;
+    width: 100px *2;
+}
+
+%item-padrao{
+    font-size: 14px;
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+@for $i from 1 through 7{
+    .i#{$i}{
+        @extend %item-padrao;
+
+        @if $i <=3{
+            font-weight: bold;
+            color: red;
+        }
+    }
+
+
+}
